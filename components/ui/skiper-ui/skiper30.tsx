@@ -30,10 +30,11 @@ const Skiper30 = () => {
 
   useEffect(() => {
     const lenis = new Lenis();
+    let rafId = 0;
 
     const raf = (time: number) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     };
 
     const resize = () => {
@@ -41,18 +42,20 @@ const Skiper30 = () => {
     };
 
     window.addEventListener("resize", resize);
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
     resize();
 
     return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
       window.removeEventListener("resize", resize);
     };
   }, []);
 
   return (
     <main className="w-full bg-black text-white relative z-10">
-      <div className="font-geist flex h-screen items-center justify-center gap-2">
-        <div className="absolute left-1/2 top-[10%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-white">
+      <div className="font-geist flex h-[72svh] items-center justify-center gap-2 sm:h-screen">
+        <div className="absolute left-1/2 top-[12%] grid -translate-x-1/2 content-start justify-items-center gap-5 px-4 text-center text-white sm:top-[10%] sm:gap-6">
           <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.3em] text-white/60">
             Rewards Pool
           </span>

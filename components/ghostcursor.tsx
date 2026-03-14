@@ -2,7 +2,7 @@ import GhostCursor from './ui/GhostCursor'
 
 function Demo2() {
   return (
-    <div style={{ height: 800, position: 'relative' }}>
+    <div style={{ height: '100%', width: '100%', position: 'relative' }}>
       <GhostCursor
         // Visuals
         color="#B19EEF"

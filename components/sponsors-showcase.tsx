@@ -69,7 +69,7 @@ export default function SponsorsShowcase() {
 
   return (
     <section className="relative z-10 mx-auto w-full max-w-7xl overflow-hidden px-4 py-12 md:px-8 md:py-16">
-      <div className="absolute inset-0 z-0 opacity-60">
+      <div className="absolute inset-0 z-0 hidden opacity-60 sm:block">
         <GhostCursor
           color="#5B9DFF"
           brightness={1.2}

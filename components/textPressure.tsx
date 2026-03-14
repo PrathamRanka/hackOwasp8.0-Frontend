@@ -3,7 +3,7 @@ import TextPressure from './ui/textpressure';
 
 export default function TextPressureSection() {
   return (
-    <div style={{ position: 'relative', height: '42vh', minHeight: '180px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="relative flex h-[34vh] min-h-45 w-full items-center justify-center md:h-[42vh]">
       {/* Static pre-rendered heading for mobile / touch — no JS interaction needed */}
       <h1
         className="md:hidden text-center font-black uppercase tracking-tight text-white"
@@ -18,7 +18,7 @@ export default function TextPressureSection() {
       </h1>
 
       {/* Interactive variable-font effect for tablet / desktop */}
-      <div className="hidden md:block" style={{ width: 'min(82vw, 1050px)', height: '100%' }}>
+      <div className="hidden h-full md:block" style={{ width: 'min(82vw, 1050px)' }}>
         <TextPressure
           text="HackOwasp8.0"
           flex={false}

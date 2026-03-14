@@ -42,7 +42,7 @@ export default function ExpandableCardDemo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md h-full w-full z-90"
+            className="fixed inset-0 z-90 h-full w-full bg-black/85 backdrop-blur-md"
           />
         )}
       </AnimatePresence>
@@ -50,14 +50,14 @@ export default function ExpandableCardDemo() {
       {/* Expanded modal */}
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-100">
+          <div className="fixed inset-0 z-100 grid place-items-center">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.05 } }}
-              className="flex fixed right-4 top-[max(1rem,env(safe-area-inset-top))] z-120 h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/95 shadow-lg md:hidden"
+              className="fixed right-4 top-[max(1rem,env(safe-area-inset-top))] z-120 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/95 shadow-lg md:hidden"
               aria-label="Close track details"
               onClick={() => setActive(null)}
             >
