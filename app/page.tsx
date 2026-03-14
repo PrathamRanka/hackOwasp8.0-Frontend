@@ -3,6 +3,7 @@ import { AppleHelloEnglishEffect } from "@/components/apple-hello-effect";
 import NavbarDemo from "@/components/resizable-navbar-demo";
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import TimelineDemo from "@/components/timeline-demo";
+import { Skiper30 } from "@/components/ui/skiper-ui/skiper30";
 
 export default function Home() {
   return (
@@ -29,6 +30,11 @@ export default function Home() {
       {/* Timeline Section */}
       <section className="px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         <TimelineDemo />
+      </section>
+
+            {/* Prizes Section */}
+      <section className="relative z-10 w-full overflow-hidden">
+        <Skiper30 />
       </section>
     </main>
   );

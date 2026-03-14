@@ -12,6 +12,8 @@
     "@tabler/icons-react": "^3.40.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.36.0",
+    "lenis": "^1.3.18",
     "lucide-react": "^0.577.0",
     "motion": "^12.36.0",
     "next": "16.1.6",
