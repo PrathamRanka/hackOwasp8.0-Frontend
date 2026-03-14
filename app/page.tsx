@@ -1,4 +1,5 @@
 import Demo from "@/components/demo";
+import { AppleHelloEnglishEffect } from "@/components/apple-hello-effect";
 
 export default function Home() {
   return (
@@ -7,7 +8,7 @@ export default function Home() {
         <Demo />
       </div>
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white md:text-6xl">HackOwasp8.0</h1>
+        <AppleHelloEnglishEffect className="h-24 text-white md:h-28" speed={1.1} aria-label="HackOwasp8.0" />
       </div>
     </main>
   );
