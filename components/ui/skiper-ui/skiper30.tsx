@@ -50,10 +50,10 @@ const Skiper30 = () => {
   }, []);
 
   return (
-    <main className="w-full bg-black text-white relative z-10 hidden sm:block">
+    <main className="w-full bg-black text-white relative z-10">
       <div className="font-geist flex h-screen items-center justify-center gap-2">
         <div className="absolute left-1/2 top-[10%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-white">
-          <h2 className="font-inter text-5xl md:text-7xl font-black mb-4 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Hackathon Prizes</h2>
+        <h2 className="font-inter text-4xl sm:text-5xl md:text-7xl font-black mb-4 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Hackathon Prizes</h2>
           <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-white/60 after:to-transparent after:content-['']">
             scroll down to see
           </span>
@@ -62,12 +62,32 @@ const Skiper30 = () => {
 
       <div
         ref={gallery}
-        className="relative box-border flex h-[175vh] gap-[2vw] overflow-hidden bg-black p-[2vw]"
+        className="relative box-border hidden sm:flex h-[175vh] gap-[2vw] overflow-hidden bg-black p-[2vw]"
       >
         <Column items={[prizesData[0], prizesData[1], prizesData[2]]} y={y} />
         <Column items={[prizesData[3], prizesData[4], prizesData[0]]} y={y2} />
         <Column items={[prizesData[1], prizesData[2], prizesData[3]]} y={y3} />
         <Column items={[prizesData[4], prizesData[0], prizesData[1]]} y={y4} />
+      </div>
+
+      {/* Mobile prizes — shown only on xs screens */}
+      <div className="flex sm:hidden flex-col items-center px-6 pb-16">
+        <div className="grid grid-cols-1 gap-4 w-full max-w-md mx-auto">
+          {prizesData.map((item, i) => (
+            <div key={i} className="relative h-44 rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src={item.src}
+                alt={item.prize}
+                fill
+                className="pointer-events-none object-cover brightness-[0.3]"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                <h3 className="text-white font-black text-xl tracking-tighter uppercase mb-2 drop-shadow-lg">{item.prize}</h3>
+                <p className="text-emerald-400 font-bold text-base font-mono border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 rounded backdrop-blur-sm">{item.amount}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
     </main>

@@ -71,7 +71,7 @@ export default function ExpandableCardDemo() {
               className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-neutral-900/95 backdrop-blur-2xl sm:rounded-3xl overflow-hidden border border-white/10"
             >
               <motion.div className="w-full">
-                <div className={`w-full h-40 lg:h-60 sm:rounded-tr-lg sm:rounded-tl-lg flex items-center justify-center overflow-hidden relative ${active.bgLight}`}>
+                <div className={`w-full h-32 sm:h-40 lg:h-60 sm:rounded-tr-lg sm:rounded-tl-lg flex items-center justify-center overflow-hidden relative ${active.bgLight}`}>
                    {/* Background Icon */}
                    <span className={`material-symbols-outlined absolute text-[200px] opacity-[0.05] ${active.textCol}`}>
                      {active.icon}
@@ -140,7 +140,7 @@ export default function ExpandableCardDemo() {
             className={`
               relative overflow-hidden group cursor-pointer
               bg-black/40 backdrop-blur-xl border border-white/5
-              rounded-2xl border-l-[6px] p-6 sm:p-8
+              rounded-2xl border-l-[6px] p-5 sm:p-8
               ${card.color} ${card.shadow}
             `}
           >
