@@ -29,9 +29,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const activeStrengthRef = useRef({ current: 0 });
 
   const isMobile = useMemo(() => {
-    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    const hasTouchScreen = 'ontouchstart' in window || window.navigator.maxTouchPoints > 0;
     const isSmallScreen = window.innerWidth <= 768;
-    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    const windowWithOpera = window as Window & { opera?: string };
+    const userAgent = window.navigator.userAgent || window.navigator.vendor || windowWithOpera.opera || '';
     const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
     const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
     return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
@@ -62,6 +67,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     }
 
     const cursor = cursorRef.current;
+    const activeStrength = activeStrengthRef.current;
     gsap.set(cursor, { autoAlpha: activeAreaElement ? 0 : 1 });
     cornersRef.current = cursor.querySelectorAll<HTMLDivElement>('.target-cursor-corner');
 
@@ -98,7 +104,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       if (!targetCornerPositionsRef.current || !cursorRef.current || !cornersRef.current) {
         return;
       }
-      const strength = activeStrengthRef.current.current;
+      const strength = activeStrength.current;
       if (strength === 0) return;
       const cursorX = gsap.getProperty(cursorRef.current, 'x') as number;
       const cursorY = gsap.getProperty(cursorRef.current, 'y') as number;
@@ -222,7 +228,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       isActiveRef.current = true;
       gsap.ticker.add(tickerFnRef.current!);
 
-      gsap.to(activeStrengthRef.current, { current: 1, duration: hoverDuration, ease: 'power2.out' });
+      gsap.to(activeStrength, { current: 1, duration: hoverDuration, ease: 'power2.out' });
 
       corners.forEach((corner, i) => {
         gsap.to(corner, {
@@ -237,7 +243,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         gsap.ticker.remove(tickerFnRef.current!);
         isActiveRef.current = false;
         targetCornerPositionsRef.current = null;
-        gsap.set(activeStrengthRef.current, { current: 0, overwrite: true });
+        gsap.set(activeStrength, { current: 0, overwrite: true });
         activeTarget = null;
         if (cornersRef.current) {
           const corners = Array.from(cornersRef.current);
@@ -303,7 +309,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
       isActiveRef.current = false;
       targetCornerPositionsRef.current = null;
-      activeStrengthRef.current.current = 0;
+      activeStrength.current = 0;
     };
   }, [targetSelector, activeAreaSelector, spinDuration, moveCursor, constants, hideDefaultCursor, isMobile, hoverDuration, parallaxOn]);
 
