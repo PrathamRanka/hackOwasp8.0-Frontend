@@ -1,18 +1,15 @@
 import Demo from "@/components/demo";
 import { AppleHelloEnglishEffect } from "@/components/apple-hello-effect";
-import NavbarDemo from "@/components/resizable-navbar-demo";
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import TimelineDemo from "@/components/timeline-demo";
 import { Skiper30 } from "@/components/ui/skiper-ui/skiper30";
+
 
 export default function Home() {
   return (
     <main className="relative w-full bg-black min-h-screen text-white pb-24">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        <div className="absolute inset-x-0 top-0 z-20">
-          <NavbarDemo />
-        </div>
         <div className="absolute inset-0 z-0">
           <Demo />
         </div>
