@@ -1,4 +1,4 @@
-import TargetCursor from './TargetCursor';
+import TargetCursor from '../components/ui/TargetCursor';
 
 export default function App() {
   return (
