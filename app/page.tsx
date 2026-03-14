@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import AboutOwaspSection from "@/components/about-owasp-section";
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import SponsorsShowcase from "@/components/sponsors-showcase";
@@ -10,10 +11,63 @@ import Demo2 from '@/components/ghostcursor';
 import { DemoOne } from "@/components/countdown";
 import Footer from "@/components/footer";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Official website of HackOWASP 8.0, the OWASP TIET hackathon for cybersecurity and frontier tech builders.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
 
 export default function Home() {
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "HackOWASP 8.0",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    startDate: "2026-04-17T09:00:00+05:30",
+    endDate: "2026-04-19T18:00:00+05:30",
+    organizer: {
+      "@type": "Organization",
+      name: "OWASP TIET",
+      url: siteUrl,
+      logo: `${siteUrl}/owasp.png`,
+    },
+    location: {
+      "@type": "Place",
+      name: "Thapar Institute of Engineering and Technology",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Patiala",
+        addressRegion: "Punjab",
+        addressCountry: "IN",
+      },
+    },
+    image: [`${siteUrl}/owasp.png`],
+    url: siteUrl,
+    description:
+      "HackOWASP 8.0 is a 36-hour student hackathon by OWASP TIET spanning cybersecurity, AI, blockchain, edtech, and medtech.",
+  };
+
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "OWASP TIET",
+    url: siteUrl,
+    logo: `${siteUrl}/owasp.png`,
+    sameAs: [],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
+
       <StickyBannerDemo />
 
       <main className="relative flex-1 w-full overflow-x-clip bg-black pb-16 text-white touch-pan-y md:pb-24">
