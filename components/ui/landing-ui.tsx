@@ -416,6 +416,15 @@ function random(base: number | [number, number]): number {
   return Math.random() * base;
 }
 
+function createInstancedGeometryFrom(geometry: THREE.BufferGeometry): THREE.InstancedBufferGeometry {
+  const instanced = new THREE.InstancedBufferGeometry();
+  instanced.setIndex(geometry.getIndex());
+  Object.keys(geometry.attributes).forEach((name) => {
+    instanced.setAttribute(name, geometry.getAttribute(name));
+  });
+  return instanced;
+}
+
 function pickRandom<T>(arr: T | T[]): T {
   if (Array.isArray(arr)) {
     return arr[Math.floor(Math.random() * arr.length)];
@@ -458,7 +467,7 @@ class CarLights {
     const curve = new THREE.LineCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -1));
     const geometry = new THREE.TubeGeometry(curve, 40, 1, 8, false);
 
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as THREE.BufferGeometry) as THREE.InstancedBufferGeometry;
+    const instanced = createInstancedGeometryFrom(geometry);
     instanced.instanceCount = options.lightPairsPerRoadWay * 2;
 
     const laneWidth = options.roadWidth / options.lanesPerRoad;
@@ -616,7 +625,7 @@ class LightsSticks {
   init() {
     const options = this.options;
     const geometry = new THREE.PlaneGeometry(1, 1);
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as THREE.BufferGeometry) as THREE.InstancedBufferGeometry;
+    const instanced = createInstancedGeometryFrom(geometry);
     const totalSticks = options.totalSideLightSticks;
     instanced.instanceCount = totalSticks;
 
@@ -1073,15 +1082,15 @@ class App {
 
       const searchImage = new Image();
       const areaImage = new Image();
-      assets.smaa = {};
+      const smaa: { search?: HTMLImageElement; area?: HTMLImageElement } = (assets.smaa = {});
 
       searchImage.addEventListener('load', function () {
-        assets.smaa.search = this;
+        smaa.search = this;
         manager.itemEnd('smaa-search');
       });
 
       areaImage.addEventListener('load', function () {
-        assets.smaa.area = this;
+        smaa.area = this;
         manager.itemEnd('smaa-area');
       });
 
