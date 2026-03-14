@@ -1,3 +1,4 @@
+import AboutOwaspSection from "@/components/about-owasp-section";
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import SponsorsShowcase from "@/components/sponsors-showcase";
 import TimelineDemo from "@/components/timeline-demo";
@@ -28,6 +29,8 @@ export default function Home() {
             <DemoOne />
           </div>
         </section>
+
+        <AboutOwaspSection />
 
         {/* Tracks Section */}
         <section className="py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto relative z-10">

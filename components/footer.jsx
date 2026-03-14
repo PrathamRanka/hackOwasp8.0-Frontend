@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
         <>
-            <div className='bg-black px-4'>
-                <footer className="bg-[#131314] w-full max-w-337.5 mx-auto text-white pt-8 lg:pt-12 px-4 sm:px-8 md:px-16 lg:px-28 rounded-tl-3xl rounded-tr-3xl overflow-hidden">
+            <div className='bg-black w-full'>
+                <footer className="bg-[#131314] w-full text-white pt-8 lg:pt-12 px-4 sm:px-8 md:px-16 lg:px-28 rounded-tl-3xl rounded-tr-3xl overflow-hidden">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-6 gap-8 md:gap-12">
                         
                         <div className="lg:col-span-3 space-y-6">
