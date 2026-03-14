@@ -1,4 +1,5 @@
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
+import SponsorsShowcase from "@/components/sponsors-showcase";
 import TimelineDemo from "@/components/timeline-demo";
 import { Skiper30 } from "@/components/ui/skiper-ui/skiper30";
 import StickyBannerDemo from "@/components/sticky-banner-demo";
@@ -75,10 +76,15 @@ export default function Home() {
         <TimelineDemo />
       </section>
 
+
+
             {/* Prizes Section */}
       <section className="relative z-10 w-full overflow-hidden">
         <Skiper30 />
       </section>
+
+            {/* Sponsors Section */}
+      <SponsorsShowcase />
     </main>
   );
 }
