@@ -6,11 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const prizesData = [
-  { prize: "1st Prize", amount: "₹50,000", src: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=3270&auto=format&fit=crop" },
-  { prize: "2nd Prize", amount: "₹30,000", src: "https://images.unsplash.com/photo-1639762681485-074b7f4ec651?q=80&w=3270&auto=format&fit=crop" },
-  { prize: "3rd Prize", amount: "₹20,000", src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=3270&auto=format&fit=crop" },
-  { prize: "Best First Year", amount: "₹10,000", src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3200&auto=format&fit=crop" },
-  { prize: "Best Girls Team", amount: "₹10,000", src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=3270&auto=format&fit=crop" },
+  { prize: "1st Prize", amount: "₹50,000", src: "/awards.jpg" },
+  { prize: "2nd Prize", amount: "₹30,000", src: "/awards.avif" },
+  { prize: "3rd Prize", amount: "₹20,000", src: "/awards.jpg" },
+  { prize: "Best First Year", amount: "₹10,000", src: "/awards.avif" },
+  { prize: "Best Girls Team", amount: "₹10,000", src: "/awards.jpg" },
 ];
 
 const Skiper30 = () => {
@@ -88,7 +88,7 @@ const Skiper30 = () => {
       <div className="flex sm:hidden flex-col items-center px-6 pb-16">
         <div className="grid grid-cols-1 gap-4 w-full max-w-md mx-auto">
           {prizesData.map((item, i) => (
-            <div key={i} className="relative h-44 rounded-2xl overflow-hidden border border-white/10">
+            <div key={`${item.prize}-${i}`} className="relative h-44 rounded-2xl overflow-hidden border border-white/10">
               <Image
                 src={item.src}
                 alt={item.prize}
@@ -120,9 +120,9 @@ const Column = ({ items, y }: ColumnProps) => {
       style={{ y }}
     >
       {items.map((item, i) => (
-        <div key={i} className="relative h-full w-full overflow-hidden rounded-3xl group border border-white/10">
+        <div key={`${item.prize}-${i}`} className="relative h-full w-full overflow-hidden rounded-3xl group border border-white/10">
           <Image
-            src={`${item.src}`}
+            src={item.src}
             alt={item.prize}
             fill
             className="pointer-events-none object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.3] group-hover:brightness-[0.4]"

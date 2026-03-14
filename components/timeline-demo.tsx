@@ -4,9 +4,10 @@ import { Timeline } from "@/components/ui/timeline";
 export default function TimelineDemo() {
   const data = [
     {
+      id: "opening-ceremony",
       title: "April 17, 2026",
       content: (
-        <div className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
+        <div key="opening-ceremony" className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
           <p className="mb-3 text-lg font-black uppercase tracking-[0.08em] text-white md:text-xl font-sans">
             Opening Ceremony & Hack Begins
           </p>
@@ -17,9 +18,10 @@ export default function TimelineDemo() {
       ),
     },
     {
+      id: "midpoint-checkins",
       title: "April 18, 2026",
       content: (
-        <div className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
+        <div key="midpoint-checkins" className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
           <p className="mb-3 text-lg font-black uppercase tracking-[0.08em] text-white md:text-xl font-sans">
             Midpoint Check-ins & Workshops
           </p>
@@ -30,9 +32,10 @@ export default function TimelineDemo() {
       ),
     },
     {
+      id: "closing-ceremony",
       title: "April 19, 2026",
       content: (
-        <div className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
+        <div key="closing-ceremony" className="max-w-2xl rounded-2xl border border-white/8 bg-white/2 px-5 py-5 backdrop-blur-sm">
           <p className="mb-3 text-lg font-black uppercase tracking-[0.08em] text-white md:text-xl font-sans">
             Hacking Ends & Closing Ceremony
           </p>
