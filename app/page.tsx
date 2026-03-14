@@ -8,9 +8,9 @@ import Demo2 from '@/components/ghostcursor';
 
 export default function Home() {
   return (
-    <main className="relative w-full bg-black min-h-screen text-white pb-16 md:pb-24">
+    <main className="relative w-full min-h-screen overflow-x-clip bg-black pb-16 text-white touch-pan-y md:pb-24">
       {/* Hero Section */}
-      <section className="relative isolate h-screen w-full overflow-hidden">
+      <section className="relative isolate h-svh w-full overflow-hidden md:h-screen">
         <div className="absolute inset-0 z-0">
           {/* <Demo /> */}
           <Demo2 />

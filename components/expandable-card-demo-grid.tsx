@@ -44,7 +44,7 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0  grid place-items-center z-[100]">
+          <div className="fixed inset-0  grid place-items-center z-100">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -60,7 +60,8 @@ export default function ExpandableCardDemo() {
                   duration: 0.05,
                 },
               }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex fixed right-4 top-[max(1rem,env(safe-area-inset-top))] z-120 h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/95 shadow-lg md:hidden"
+              aria-label="Close track details"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
@@ -68,7 +69,7 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-neutral-900/95 backdrop-blur-2xl sm:rounded-3xl overflow-hidden border border-white/10"
+              className="w-full max-w-125 h-full md:h-fit md:max-h-[90%] flex flex-col bg-neutral-900/95 backdrop-blur-2xl sm:rounded-3xl overflow-hidden border border-white/10"
             >
               <motion.div className="w-full">
                 <div className={`w-full h-32 sm:h-40 lg:h-60 sm:rounded-tr-lg sm:rounded-tl-lg flex items-center justify-center overflow-hidden relative ${active.bgLight}`}>
@@ -117,7 +118,7 @@ export default function ExpandableCardDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-400 text-sm h-60 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto font-mono leading-relaxed [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-neutral-400 text-sm h-60 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto overscroll-contain touch-pan-y font-mono leading-relaxed [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -136,7 +137,17 @@ export default function ExpandableCardDemo() {
             layoutId={`card-${card.title}-${id}`}
             key={card.title}
             onClick={() => setActive(card)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setActive(card);
+              }
+            }}
             whileHover={{ y: -5, scale: 1.02 }}
+            whileTap={{ scale: 0.99 }}
+            role="button"
+            tabIndex={0}
+            aria-label={`Open ${card.title} track details`}
             className={`
               relative overflow-hidden group cursor-pointer
               bg-black/40 backdrop-blur-xl border border-white/5
@@ -218,7 +229,7 @@ export const CloseIcon = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4 text-black"
+      className="h-5 w-5 text-black"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M18 6l-12 12" />
