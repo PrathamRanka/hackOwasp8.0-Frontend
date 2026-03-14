@@ -3,7 +3,7 @@ import TextPressure from './ui/textpressure';
 
 export default function TextPressureSection() {
   return (
-    <div style={{ position: 'relative', height: '56vh', minHeight: '200px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ position: 'relative', height: '36vh', minHeight: '160px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Static pre-rendered heading for mobile / touch — no JS interaction needed */}
       <h1
         className="md:hidden text-center font-black uppercase tracking-tight text-white"

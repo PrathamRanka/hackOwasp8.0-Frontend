@@ -4,6 +4,7 @@ import { Skiper30 } from "@/components/ui/skiper-ui/skiper30";
 import TextPressureSection from "@/components/textPressure";
 // import { Demo2}
 import Demo2 from '@/components/ghostcursor';
+import { DemoOne } from "@/components/countdown";
 
 
 export default function Home() {
@@ -15,8 +16,9 @@ export default function Home() {
           {/* <Demo /> */}
           <Demo2 />
         </div>
-        <div className="pointer-events-none absolute inset-0 z-200 flex items-center justify-center px-4">
+        <div className="pointer-events-none absolute inset-0 z-200 flex flex-col items-center justify-center gap-4 px-4">
           <TextPressureSection />
+          <DemoOne />
         </div>
       </section>
 
