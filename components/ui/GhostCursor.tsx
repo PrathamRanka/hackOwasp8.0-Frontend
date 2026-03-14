@@ -389,6 +389,16 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
         );
         mat.uniforms.iMouse.value.copy(currentMouseRef.current);
         fadeOpacityRef.current = 1.0;
+      } else if (isTouch) {
+        // Autonomous slow wander on touch/mobile — keeps blob alive without any interaction
+        const ta = now / 5000;
+        currentMouseRef.current.set(
+          0.5 + 0.35 * Math.sin(ta * 1.3),
+          0.5 + 0.35 * Math.sin(ta * 0.9)
+        );
+        mat.uniforms.iMouse.value.copy(currentMouseRef.current);
+        fadeOpacityRef.current = 1.0;
+        lastMoveTimeRef.current = now;
       } else {
         velocityRef.current.multiplyScalar(inertia);
         if (velocityRef.current.lengthSq() > 1e-6) {
@@ -419,7 +429,7 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
 
       comp.render();
 
-      if (!pointerActiveRef.current && fadeOpacityRef.current <= 0.001) {
+      if (!pointerActiveRef.current && fadeOpacityRef.current <= 0.001 && !isTouch) {
         runningRef.current = false;
         rafRef.current = null;
         return;
