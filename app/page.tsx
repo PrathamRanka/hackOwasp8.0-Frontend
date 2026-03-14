@@ -1,6 +1,7 @@
 import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import TimelineDemo from "@/components/timeline-demo";
 import { Skiper30 } from "@/components/ui/skiper-ui/skiper30";
+import StickyBannerDemo from "@/components/sticky-banner-demo";
 import TextPressureSection from "@/components/textPressure";
 // import { Demo2}
 import Demo2 from '@/components/ghostcursor';
@@ -10,6 +11,8 @@ import { DemoOne } from "@/components/countdown";
 export default function Home() {
   return (
     <main className="relative w-full min-h-screen overflow-x-clip bg-black pb-16 text-white touch-pan-y md:pb-24">
+      <StickyBannerDemo />
+
       {/* Hero Section */}
       <section className="relative isolate h-svh w-full overflow-hidden md:h-screen">
         <div className="absolute inset-0 z-0">
