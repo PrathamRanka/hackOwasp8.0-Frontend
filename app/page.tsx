@@ -1,9 +1,13 @@
 import Demo from "@/components/demo";
 import { AppleHelloEnglishEffect } from "@/components/apple-hello-effect";
+import NavbarDemo from "@/components/resizable-navbar-demo";
 
 export default function Home() {
   return (
     <main className="relative h-screen w-full overflow-hidden bg-black">
+      <div className="absolute inset-x-0 top-0 z-20">
+        <NavbarDemo />
+      </div>
       <div className="absolute inset-0">
         <Demo />
       </div>
