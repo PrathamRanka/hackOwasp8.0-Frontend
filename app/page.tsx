@@ -1,7 +1,7 @@
 import Demo from "@/components/demo";
 import { AppleHelloEnglishEffect } from "@/components/apple-hello-effect";
 import NavbarDemo from "@/components/resizable-navbar-demo";
-import CustomTracksGrid from "@/components/custom-tracks-grid";
+import ExpandableCardDemo from "@/components/expandable-card-demo-grid";
 import TimelineDemo from "@/components/timeline-demo";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       {/* Tracks Section */}
       <section className="py-24 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         <h2 className="font-inter text-4xl md:text-5xl font-black mb-12 text-center tracking-tight">Tracks</h2>
-        <CustomTracksGrid />
+        <ExpandableCardDemo />
       </section>
 
       {/* Timeline Section */}

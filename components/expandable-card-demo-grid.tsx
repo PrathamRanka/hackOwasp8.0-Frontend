@@ -28,7 +28,7 @@ export default function ExpandableCardDemo() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
-  useOutsideClick(ref, () => setActive(null));
+  useOutsideClick(ref as React.RefObject<HTMLDivElement>, () => setActive(null));
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function ExpandableCardDemo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 h-full w-full z-10"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm h-full w-full z-90"
           />
         )}
       </AnimatePresence>
@@ -68,30 +68,32 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-neutral-900/95 backdrop-blur-2xl sm:rounded-3xl overflow-hidden border border-white/10"
             >
-              <motion.div layoutId={`image-${active.title}-${id}`}>
-                <img
-                  width={200}
-                  height={200}
-                  src={active.src}
-                  alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
-                />
+              <motion.div className="w-full">
+                <div className={`w-full h-40 lg:h-60 sm:rounded-tr-lg sm:rounded-tl-lg flex items-center justify-center overflow-hidden relative ${active.bgLight}`}>
+                   {/* Background Icon */}
+                   <span className={`material-symbols-outlined absolute text-[200px] opacity-[0.05] ${active.textCol}`}>
+                     {active.icon}
+                   </span>
+                   <span className={`material-symbols-outlined text-6xl ${active.textCol} drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]`}>
+                     {active.smallIcon}
+                   </span>
+                </div>
               </motion.div>
 
               <div>
-                <div className="flex justify-between items-start p-4">
+                <div className="flex justify-between items-start p-6 pb-2">
                   <div className="">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-medium text-neutral-700 dark:text-neutral-200 text-base"
+                      className="font-black text-white text-2xl font-inter tracking-tight"
                     >
                       {active.title}
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400 text-base"
+                      className={`font-bold text-base mt-1 ${active.textCol}`}
                     >
                       {active.description}
                     </motion.p>
@@ -104,18 +106,18 @@ export default function ExpandableCardDemo() {
                     exit={{ opacity: 0 }}
                     href={active.ctaLink}
                     target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                    className={`px-4 py-2 text-xs uppercase tracking-widest font-bold rounded-xl transition-all border border-white/10 hover:text-white ${active.bgLight} ${active.textCol} ${active.bgHover}`}
                   >
                     {active.ctaText}
                   </motion.a>
                 </div>
-                <div className="pt-4 relative px-4">
+                <div className="pt-4 relative px-6 pb-6">
                   <motion.div
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-neutral-400 text-sm h-60 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto font-mono leading-relaxed [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -127,38 +129,63 @@ export default function ExpandableCardDemo() {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-start gap-4">
-        {cards.map((card, index) => (
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 w-full">
+        {cards.map((card) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
             key={card.title}
             onClick={() => setActive(card)}
-            className="p-4 flex flex-col  hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            whileHover={{ y: -5, scale: 1.02 }}
+            className={`
+              relative overflow-hidden group cursor-pointer
+              bg-black/40 backdrop-blur-xl border border-white/5
+              rounded-2xl border-l-[6px] p-6 sm:p-8
+              ${card.color} ${card.shadow}
+            `}
           >
-            <div className="flex gap-4 flex-col  w-full">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
-                <img
-                  width={100}
-                  height={100}
-                  src={card.src}
-                  alt={card.title}
-                  className="h-60 w-full  rounded-lg object-cover object-top"
-                />
+            {/* Background Icon (Low opacity) */}
+            <div className="absolute -right-8 -top-8 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-300 pointer-events-none">
+              <span className={`material-symbols-outlined text-9xl ${card.textCol}`}>{card.icon}</span>
+            </div>
+
+            {/* Header / Badges */}
+            <div className="flex justify-between items-start mb-6">
+              <motion.div>
+                 <div className={`p-2.5 rounded-lg border border-white/10 ${card.bgLight} ${card.textCol}`}>
+                   <span className="material-symbols-outlined">{card.smallIcon}</span>
+                 </div>
               </motion.div>
-              <div className="flex justify-center items-center flex-col">
-                <motion.h3
-                  layoutId={`title-${card.title}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
-                >
-                  {card.title}
-                </motion.h3>
-                <motion.p
-                  layoutId={`description-${card.description}-${id}`}
-                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
-                >
-                  {card.description}
-                </motion.p>
-              </div>
+              <span className={`text-[10px] md:text-xs font-mono border border-white/10 px-2.5 py-1 rounded bg-black/50 ${card.textCol} opacity-80 uppercase tracking-widest`}>
+                {card.trackId}
+              </span>
+            </div>
+
+            {/* Content */}
+            <motion.h3
+              layoutId={`title-${card.title}-${id}`}
+              className="text-xl md:text-2xl font-black text-white mb-1 font-inter tracking-tight"
+            >
+              {card.title}
+            </motion.h3>
+            <motion.p
+              layoutId={`description-${card.description}-${id}`}
+              className={`text-sm md:text-base font-bold mb-4 ${card.textCol}`}
+            >
+              {card.description}
+            </motion.p>
+            <p className="text-zinc-400 font-mono text-xs md:text-sm leading-relaxed mb-8">
+              {card.shortDesc}
+            </p>
+
+            {/* Action Button */}
+            <div className={`
+              mt-auto w-full py-3.5 rounded-xl border border-white/10 
+              font-bold tracking-widest text-xs uppercase text-center
+              transition-all duration-300 backdrop-blur-sm pointer-events-none
+              ${card.bgLight} ${card.textCol} group-hover:bg-${card.color.replace('border-', '')} group-hover:text-white
+            `}>
+              Explore Track <span className="ml-2">→</span>
             </div>
           </motion.div>
         ))}
@@ -202,11 +229,20 @@ export const CloseIcon = () => {
 
 const cards = [
   {
-    description: "Decentralized Future",
+    trackId: "BLOCKCHAIN_01",
+    description: "Decentralized Vault",
     title: "Blockchain",
     src: "https://images.unsplash.com/photo-1639762681485-074b7f4ec651?q=80&w=3270&auto=format&fit=crop",
     ctaText: "Explore Track",
     ctaLink: "#",
+    shortDesc: "Breach smart contracts and exploit consensus mechanisms in a sandboxed DeFi environment. Build trustless, decentralized systems.",
+    color: "border-purple-500",
+    bgLight: "bg-purple-500/20",
+    bgHover: "hover:bg-purple-500 hover:text-white",
+    textCol: "text-purple-500",
+    shadow: "shadow-[0_0_15px_rgba(168,85,247,0.15)]",
+    icon: "token",
+    smallIcon: "shield_lock",
     content: () => {
       return (
         <p>
@@ -223,11 +259,20 @@ const cards = [
     },
   },
   {
-    description: "Intelligent Systems",
+    trackId: "NEURAL_AI_02",
+    description: "Adversarial Intelligence",
     title: "Artificial Intelligence",
     src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=3270&auto=format&fit=crop",
     ctaText: "Explore Track",
     ctaLink: "#",
+    shortDesc: "Manipulate training data and poison neural networks. Build systems that learn, adapt, and solve complex problems autonomously.",
+    color: "border-cyan-500",
+    bgLight: "bg-cyan-500/20",
+    bgHover: "hover:bg-cyan-500 hover:text-white",
+    textCol: "text-cyan-500",
+    shadow: "shadow-[0_0_15px_rgba(6,182,212,0.15)]",
+    icon: "psychology",
+    smallIcon: "memory",
     content: () => {
       return (
         <p>
@@ -242,13 +287,21 @@ const cards = [
       );
     },
   },
-
   {
-    description: "Defending the Grid",
+    trackId: "INFRA_SEC_03",
+    description: "Ghost Network",
     title: "Cybersecurity",
     src: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=3270&auto=format&fit=crop",
     ctaText: "Explore Track",
     ctaLink: "#",
+    shortDesc: "Traditional penetration testing across hybrid cloud infrastructures and air-gapped systems. Think like an attacker, defend the grid.",
+    color: "border-emerald-500",
+    bgLight: "bg-emerald-500/20",
+    bgHover: "hover:bg-emerald-500 hover:text-white",
+    textCol: "text-emerald-500",
+    shadow: "shadow-[0_0_15px_rgba(16,185,129,0.15)]",
+    icon: "security",
+    smallIcon: "android_fingerprint",
     content: () => {
       return (
         <p>
@@ -265,11 +318,20 @@ const cards = [
     },
   },
   {
-    description: "Future of Learning",
+    trackId: "KNOWLEDGE_04",
+    description: "Project Prometheus",
     title: "EdTech",
     src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3200&auto=format&fit=crop",
     ctaText: "Explore Track",
     ctaLink: "#",
+    shortDesc: "Secure student data and harden digital learning platforms. Create solutions that personalize and gamify the future of education.",
+    color: "border-amber-500",
+    bgLight: "bg-amber-500/20",
+    bgHover: "hover:bg-amber-500 hover:text-white",
+    textCol: "text-amber-500",
+    shadow: "shadow-[0_0_15px_rgba(245,158,11,0.15)]",
+    icon: "school",
+    smallIcon: "auto_stories",
     content: () => {
       return (
         <p>
@@ -285,11 +347,20 @@ const cards = [
     },
   },
   {
-    description: "Healthcare Innovation",
+    trackId: "VITAL_SIGN_05",
+    description: "Pulse Guardian",
     title: "MedTech",
     src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=3270&auto=format&fit=crop",
     ctaText: "Explore Track",
     ctaLink: "#",
+    shortDesc: "Defend life-critical IoT medical devices from remote interception and signal jamming. Enhance patient care through secure tech.",
+    color: "border-rose-500",
+    bgLight: "bg-rose-500/20",
+    bgHover: "hover:bg-rose-500 hover:text-white",
+    textCol: "text-rose-500",
+    shadow: "shadow-[0_0_15px_rgba(244,63,94,0.15)]",
+    icon: "medical_services",
+    smallIcon: "monitor_heart",
     content: () => {
       return (
         <p>
