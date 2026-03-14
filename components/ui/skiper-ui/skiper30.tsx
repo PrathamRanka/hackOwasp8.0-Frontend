@@ -53,7 +53,21 @@ const Skiper30 = () => {
     <main className="w-full bg-black text-white relative z-10">
       <div className="font-geist flex h-screen items-center justify-center gap-2">
         <div className="absolute left-1/2 top-[10%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center text-white">
-        <h2 className="font-inter text-4xl sm:text-5xl md:text-7xl font-black mb-4 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Hackathon Prizes</h2>
+          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.3em] text-white/60">
+            Rewards Pool
+          </span>
+          <div className="relative inline-flex items-center justify-center px-4">
+            <div className="absolute inset-x-4 top-1/2 h-16 -translate-y-1/2 rounded-full bg-linear-to-r from-amber-500/20 via-white/12 to-rose-500/20 blur-3xl" />
+            <span
+              aria-hidden="true"
+              className="absolute text-5xl font-black uppercase tracking-tighter text-white/10 blur-sm sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              PRIZES
+            </span>
+            <h2 className="relative bg-linear-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-4xl font-black uppercase tracking-tighter text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
+              Hackathon Prizes
+            </h2>
+          </div>
           <span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:from-white/60 after:to-transparent after:content-['']">
             scroll down to see
           </span>
@@ -102,7 +116,7 @@ type ColumnProps = {
 const Column = ({ items, y }: ColumnProps) => {
   return (
     <motion.div
-      className="relative -top-[45%] flex h-full w-1/4 min-w-[250px] flex-col gap-[2vw] first:top-[-45%] nth-2:top-[-95%] nth-3:top-[-45%] nth-4:top-[-75%]"
+      className="relative -top-[45%] flex h-full w-1/4 min-w-62.5 flex-col gap-[2vw] first:top-[-45%] nth-2:top-[-95%] nth-3:top-[-45%] nth-4:top-[-75%]"
       style={{ y }}
     >
       {items.map((item, i) => (

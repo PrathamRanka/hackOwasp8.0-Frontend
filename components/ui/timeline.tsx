@@ -36,15 +36,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-transparent font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-10 md:py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl mb-3 md:mb-4 font-inter font-black tracking-tight text-white max-w-4xl">
-          Hackathon Timeline
-        </h2>
-        <p className="text-neutral-400 font-mono text-sm md:text-base max-w-sm">
-          36 hours of intense hacking. Here&apos;s a quick look at the schedule.
-        </p>
-      </div>
-
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
           <div
