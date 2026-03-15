@@ -1,14 +1,9 @@
-"use client"
+"use client";
+
 import { motion } from "motion/react";
 
-import { StickyBanner } from "@/components/ui/sticky-banner";
-
-const bannerSentences = [
-  "HackOWASP 8.0 • April 17-19, 2026",
-  "36 hours of building across security, AI, blockchain, edtech, and medtech",
-  "Team up, ship fast, and demo something worth remembering",
-  "Registrations open now • mentors, prizes, and live judging",
-];
+import { StickyBanner } from "@/components/ui/StickyBanner";
+import { bannerSentences } from "@/features/home/constants/bannerSentences";
 
 export default function StickyBannerDemo() {
   return (
@@ -38,13 +33,6 @@ export default function StickyBannerDemo() {
           </motion.div>
         </div>
       </StickyBanner>
-      <DummyContent />
     </div>
   );
 }
-
-const DummyContent = () => {
-  return (
-<></>
-  );
-};

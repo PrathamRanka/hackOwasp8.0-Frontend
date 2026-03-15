@@ -2,8 +2,8 @@
 import { useRef } from "react";
 import Link from "next/link";
 
-import { Icons } from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
+import { Icons } from "@/components/ui/Icons";
 import Ribbons from "@/components/ui/Ribbons";
 
 function Footer() {
