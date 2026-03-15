@@ -75,8 +75,8 @@ export default function HomePage({ siteUrl }: HomePageProps) {
 
         <AboutOwaspSection />
 
-        <HoverRibbonsSection className="group relative py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto z-10 rounded-3xl">
-          <section id="tracks">
+        <HoverRibbonsSection className="group relative z-10">
+          <section id="tracks" className="relative py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto rounded-3xl">
             <SectionHeader
               eyebrow="Challenge Domains"
               backgroundLabel="TRACKS"
@@ -87,10 +87,8 @@ export default function HomePage({ siteUrl }: HomePageProps) {
             />
             <ExpandableTracksSection />
           </section>
-        {/* </HoverRibbonsSection> */}
 
-        {/* <HoverRibbonsSection className="group relative px-0 md:px-8 max-w-7xl mx-auto z-10 rounded-3xl"> */}
-          <section id="timeline">
+          <section id="timeline" className="relative px-0 md:px-8 max-w-7xl mx-auto rounded-3xl">
             <SectionHeader
               eyebrow="Event Flow"
               backgroundLabel="TIMELINE"
@@ -102,20 +100,18 @@ export default function HomePage({ siteUrl }: HomePageProps) {
             />
             <TimelineSection />
           </section>
-        </HoverRibbonsSection>
 
-        <section className="relative z-10 w-full overflow-hidden">
-          <Skiper30 />
-        </section>
+          <section className="relative w-full overflow-hidden">
+            <Skiper30 />
+          </section>
 
-        <HoverRibbonsSection className="group relative rounded-3xl">
-          <div id="sponsors">
+          <div id="sponsors" className="relative rounded-3xl">
             <SponsorsShowcase />
           </div>
+
+          <MainFooter />
         </HoverRibbonsSection>
       </main>
-
-      <MainFooter />
     </>
   );
 }
