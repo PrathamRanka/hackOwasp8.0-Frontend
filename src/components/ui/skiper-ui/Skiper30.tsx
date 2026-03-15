@@ -141,21 +141,3 @@ const Column = ({ items, y }: ColumnProps) => {
 };
 
 export { Skiper30 };
-
-/**
- * Skiper 30 Parallax_002 — React + framer motion + lenis
- * Inspired by and adapted from https://www.siena.film/films/my-project-x
- * We respect the original creators. This is an inspired rebuild with our own taste and does not claim any ownership.
- * These animations aren’t associated with the siena.film . They’re independent recreations meant to study interaction design
- *
- * License & Usage:
- * - Free to use and modify in both personal and commercial projects.
- * - Attribution to Skiper UI is required when using the free version.
- * - No attribution required with Skiper UI Pro.
- *
- * Feedback and contributions are welcome.
- *
- * Author: @gurvinder-singh02
- * Website: https://gxuri.in
- * Twitter: https://x.com/Gur__vi
- */
