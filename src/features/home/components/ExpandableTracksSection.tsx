@@ -142,7 +142,7 @@ export default function ExpandableTracksSection() {
               aria-label={`Open ${card.title} track details`}
               className={[
                 "relative overflow-hidden group cursor-pointer select-none",
-                "bg-zinc-950 border border-white/[0.07] hover:border-white/20",
+                "bg-zinc-950/82 border border-white/[0.07] hover:border-white/20",
                 "rounded-2xl transition-colors duration-300 flex flex-col",
                 bentoClasses[index],
                 isFullWidth ? "min-h-40" : isTall ? "min-h-110 md:min-h-0" : "min-h-55",

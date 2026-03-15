@@ -23,7 +23,7 @@ export default function HoverRibbonsSection({
       <div
         aria-hidden="true"
         className={[
-          "pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-0 transition-opacity duration-300",
+          "pointer-events-none absolute inset-0 z-20 overflow-hidden opacity-0 transition-opacity duration-300",
           "group-hover:opacity-100 hover:opacity-100",
           overlayClassName,
         ]
@@ -32,7 +32,7 @@ export default function HoverRibbonsSection({
       >
         <Ribbons
           eventTargetRef={sectionRef}
-          baseThickness={7}
+          baseThickness={8}
           colors={["#5227FF", "#06fcdb", "#bc7cc1"]}
           speedMultiplier={0.5}
           maxAge={500}
