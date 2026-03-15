@@ -7,7 +7,7 @@ export default function TextPressureSection() {
         className="md:hidden text-center font-black uppercase tracking-tight text-white"
         style={{
           fontSize: "clamp(2.9rem, 13vw, 5.5rem)",
-          WebkitTextStroke: "1px #5227FF",
+          WebkitTextStroke: "1px #565656",
           margin: 0,
           lineHeight: 1.1,
         }}
@@ -25,7 +25,7 @@ export default function TextPressureSection() {
           weight
           italic
           textColor="#ffffff"
-          strokeColor="#5227FF"
+          strokeColor="#565656"
           minFontSize={72}
         />
       </div>
