@@ -27,8 +27,24 @@ export const metadata: Metadata = {
     template: "%s | HackOWASP 8.0",
   },
   description:
-    "HackOWASP 8.0 is OWASP TIET's flagship 36-hour hackathon focused on cybersecurity, AI, blockchain, edtech, and medtech.",
+    "HackOWASP 8.0 is OWASP TIET's flagship 36-hour hackathon in India for cybersecurity, AI, blockchain, edtech, and medtech innovators building real-world solutions.",
   applicationName: "HackOWASP 8.0",
+  manifest: "/manifest.webmanifest",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: "/owasp.png", type: "image/png", sizes: "32x32" },
+      { url: "/owasp.png", type: "image/png", sizes: "192x192" },
+      { url: "/owasp.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: [{ url: "/owasp.png", type: "image/png" }],
+    apple: [{ url: "/owasp.png", type: "image/png", sizes: "180x180" }],
+  },
   keywords: [
     "HackOWASP",
     "OWASP TIET",
@@ -36,6 +52,13 @@ export const metadata: Metadata = {
     "Cybersecurity",
     "Blockchain",
     "Artificial Intelligence",
+    "Student Innovation",
+    "CTF",
+    "Secure Coding",
+    "Web Security",
+    "India Hackathon",
+    "Punjab Hackathon",
+    "Thapar Institute of Engineering and Technology",
     "Student Hackathon",
     "Thapar University",
   ],
@@ -50,7 +73,7 @@ export const metadata: Metadata = {
     url: "/",
     title: "HackOWASP 8.0 | OWASP TIET",
     description:
-      "Join HackOWASP 8.0, OWASP TIET's 36-hour build sprint across security, AI, blockchain, edtech, and medtech.",
+      "Join HackOWASP 8.0, OWASP TIET's 36-hour flagship hackathon where teams build high-impact products across AI, blockchain, edtech, and medtech.",
     siteName: "HackOWASP 8.0",
     images: [
       {
@@ -66,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HackOWASP 8.0 | OWASP TIET",
     description:
-      "OWASP TIET's flagship hackathon for builders in cybersecurity, AI, blockchain, edtech, and medtech.",
+      "Build, break, and secure at HackOWASP 8.0 — OWASP TIET's flagship 36-hour hackathon for cybersecurity and frontier tech builders.",
     images: ["/owasp.png"],
   },
   robots: {
@@ -93,6 +116,9 @@ export default function RootLayout({
       <head>
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300,0..1&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/owasp.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/owasp.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/owasp.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} min-h-screen flex flex-col bg-black antialiased`}
