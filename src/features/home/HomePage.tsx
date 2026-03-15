@@ -100,17 +100,19 @@ export default function HomePage({ siteUrl }: HomePageProps) {
             />
             <TimelineSection />
           </section>
+        </HoverRibbonsSection>
 
-          <section className="relative w-full overflow-hidden">
-            <Skiper30 />
-          </section>
+        <section className="relative w-full overflow-hidden">
+          <Skiper30 />
+        </section>
 
+        <HoverRibbonsSection className="group relative z-10">
           <div id="sponsors" className="relative rounded-3xl">
             <SponsorsShowcase />
           </div>
-
-          <MainFooter />
         </HoverRibbonsSection>
+
+        <MainFooter />
       </main>
     </>
   );
