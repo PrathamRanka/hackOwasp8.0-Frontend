@@ -1,13 +1,33 @@
 "use client";
+import { useRef } from "react";
 import Link from "next/link";
 
 import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
+import Ribbons from "@/components/ui/Ribbons";
 
 function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
   return (
-    <footer className=" py-12 px-4 md:px-6 bg-black text-white">
-      <div className="container mx-auto">
+    <footer ref={footerRef} className="group relative overflow-hidden py-12 px-4 md:px-6 bg-black text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      >
+        <Ribbons
+          eventTargetRef={footerRef}
+          baseThickness={7}
+          colors={["#5227FF", "#06fcdb", "#bc7cc1"]}
+          speedMultiplier={0.5}
+          maxAge={500}
+          enableFade={false}
+          enableShaderEffect
+          backgroundColor={[0, 0, 0, 0]}
+        />
+      </div>
+
+      <div className="container relative z-10 mx-auto">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-8 md:mb-0">
             <Link href="/" className="flex items-center gap-2">

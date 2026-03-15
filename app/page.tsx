@@ -154,9 +154,7 @@ export default function Home() {
         </HoverRibbonsSection>
       </main>
 
-      <HoverRibbonsSection className="group relative rounded-t-3xl overflow-hidden">
-        <MainFooter />
-      </HoverRibbonsSection>
+      <MainFooter />
     </>
   );
 }
