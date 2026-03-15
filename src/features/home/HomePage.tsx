@@ -8,6 +8,7 @@ import SponsorsShowcase from "@/features/home/components/SponsorsShowcase";
 import StickyBannerDemo from "@/features/home/components/StickyBannerDemo";
 import TextPressureSection from "@/features/home/components/TextPressureSection";
 import TimelineSection from "@/features/home/components/TimelineSection";
+import { ORG_SAME_AS } from "@/features/home/constants/links";
 import HoverRibbonsSection from "@/components/ui/HoverRibbonsSection";
 import { Skiper30 } from "@/components/ui/skiper-ui/Skiper30";
 
@@ -52,7 +53,7 @@ export default function HomePage({ siteUrl }: HomePageProps) {
     name: "OWASP TIET",
     url: siteUrl,
     logo: `${siteUrl}/owasp.png`,
-    sameAs: [],
+    sameAs: ORG_SAME_AS,
   };
 
   return (

@@ -1,4 +1,5 @@
 import type { TrackCard } from "@/types/home";
+import { TRACK_LINKS } from "@/features/home/constants/links";
 
 export const trackCards: TrackCard[] = [
   {
@@ -6,7 +7,7 @@ export const trackCards: TrackCard[] = [
     description: "Decentralized Vault",
     title: "Blockchain",
     ctaText: "Explore Track",
-    ctaLink: "#",
+    ctaLink: TRACK_LINKS.blockchain,
     shortDesc: "Breach smart contracts and exploit consensus mechanisms in a sandboxed DeFi environment. Build trustless, decentralized systems.",
     accent: "bg-purple-500",
     textCol: "text-purple-400",
@@ -25,7 +26,7 @@ export const trackCards: TrackCard[] = [
     description: "Adversarial Intelligence",
     title: "Artificial Intelligence",
     ctaText: "Explore Track",
-    ctaLink: "#",
+    ctaLink: TRACK_LINKS.ai,
     shortDesc: "Manipulate training data and poison neural networks. Build systems that learn, adapt, and solve complex problems autonomously.",
     accent: "bg-cyan-500",
     textCol: "text-cyan-400",
@@ -44,7 +45,7 @@ export const trackCards: TrackCard[] = [
     description: "Ghost Network",
     title: "Cybersecurity",
     ctaText: "Explore Track",
-    ctaLink: "#",
+    ctaLink: TRACK_LINKS.cybersecurity,
     shortDesc: "Traditional penetration testing across hybrid cloud infrastructures and air-gapped systems. Think like an attacker, defend the grid.",
     accent: "bg-emerald-500",
     textCol: "text-emerald-400",
@@ -64,7 +65,7 @@ export const trackCards: TrackCard[] = [
     description: "Project Prometheus",
     title: "EdTech",
     ctaText: "Explore Track",
-    ctaLink: "#",
+    ctaLink: TRACK_LINKS.edtech,
     shortDesc: "Secure student data and harden digital learning platforms. Create solutions that personalize and gamify the future of education.",
     accent: "bg-amber-500",
     textCol: "text-amber-400",
@@ -83,7 +84,7 @@ export const trackCards: TrackCard[] = [
     description: "Pulse Guardian",
     title: "MedTech",
     ctaText: "Explore Track",
-    ctaLink: "#",
+    ctaLink: TRACK_LINKS.medtech,
     shortDesc: "Defend life-critical IoT medical devices from remote interception and signal jamming. Enhance patient care through secure tech.",
     accent: "bg-rose-500",
     textCol: "text-rose-400",
