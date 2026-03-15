@@ -9,12 +9,12 @@ import TextPressureSection from "@/components/textPressure";
 // import { Demo2}
 import Demo2 from '@/components/ghostcursor';
 import { DemoOne } from "@/components/countdown";
-import Footer from "@/components/footer";
+import { MainFooter } from "@/components/footer";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "HackOWASP 8.0 - OWASP TIET's Premier Hackathon",
   description:
     "Official website of HackOWASP 8.0, the OWASP TIET hackathon for cybersecurity and frontier tech builders.",
   alternates: {
@@ -145,7 +145,7 @@ export default function Home() {
         <SponsorsShowcase />
       </main>
 
-      <Footer />
+      <MainFooter />
     </>
   );
 }
