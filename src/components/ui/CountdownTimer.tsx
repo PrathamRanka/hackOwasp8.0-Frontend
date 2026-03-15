@@ -12,11 +12,17 @@ const DAY = HOUR * 24;
 
 export default function ShiftingCountdown() {
   return (
+    <div className="flex flex-col items-center gap-2 w-full max-w-2xl mx-auto">
+      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/50">Live In</p>
     <div className="flex w-full max-w-2xl mx-auto items-center justify-center bg-transparent">
       <CountdownItem unit="Day" label="Days" />
+      <span className="text-2xl font-mono font-semibold text-white/60 md:text-4xl lg:text-5xl mb-6">:</span>
       <CountdownItem unit="Hour" label="Hours" />
+      <span className="text-2xl font-mono font-semibold text-white/60 md:text-4xl lg:text-5xl mb-6">:</span>
       <CountdownItem unit="Minute" label="Minutes" />
+      <span className="text-2xl font-mono font-semibold text-white/60 md:text-4xl lg:text-5xl mb-6">:</span>
       <CountdownItem unit="Second" label="Seconds" />
+    </div>
     </div>
   );
 }
