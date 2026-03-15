@@ -1,72 +1,42 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "motion/react";
-import { useMemo, useState } from "react";
 import GhostCursor from "@/components/ui/GhostCursor";
+import { LogoLoop, type LogoItem } from "@/components/ui/LogoLoop";
+import {
+  SiEthereum,
+  SiPolygon,
+  SiGithub,
+  SiDiscord,
+} from "react-icons/si";
 
-type Sponsor = {
-  name: string;
-  logoUrl: string;
-};
-
-type SponsorGroup = {
-  title: string;
-  sponsors: Sponsor[];
-};
-
-const sponsorGroups: SponsorGroup[] = [
-  {
-    title: "Main Sponsors",
-    sponsors: [
-      { name: "ETHIndia", logoUrl: "https://source.unsplash.com/600x200/?cybersecurity,technology" },
-      { name: "Tim Hortons", logoUrl: "https://source.unsplash.com/600x200/?coffee,brand" },
-      { name: "Polygon", logoUrl: "https://source.unsplash.com/600x200/?blockchain,web3" },
-      { name: "BlockseBlock", logoUrl: "https://source.unsplash.com/600x200/?startup,technology" },
-      { name: "ICP India", logoUrl: "https://source.unsplash.com/600x200/?network,cloud" },
-      { name: "SwapSpace", logoUrl: "https://source.unsplash.com/600x200/?crypto,exchange" },
-    ],
-  },
-  {
-    title: "Additional Sponsors",
-    sponsors: [
-      { name: "Archies", logoUrl: "https://source.unsplash.com/600x200/?gifts,retail" },
-      { name: "Tiffin Wala", logoUrl: "https://source.unsplash.com/600x200/?food,delivery" },
-      { name: "Megh's", logoUrl: "https://source.unsplash.com/600x200/?restaurant,brand" },
-    ],
-  },
-  {
-    title: "Community Partners",
-    sponsors: [
-      { name: "Web3 India", logoUrl: "https://source.unsplash.com/600x200/?developer,community" },
-      { name: "The Crypto Vines", logoUrl: "https://source.unsplash.com/600x200/?cryptocurrency,finance" },
-      { name: "CYNDIA", logoUrl: "https://source.unsplash.com/600x200/?ai,security" },
-      { name: "Noida B-Sides", logoUrl: "https://source.unsplash.com/600x200/?hacker,conference" },
-      { name: "SIZ", logoUrl: "https://source.unsplash.com/600x200/?technology,event" },
-    ],
-  },
+const mainSponsors: LogoItem[] = [
+  { node: <span className="flex items-center gap-2 text-white/80 font-semibold text-sm"><SiEthereum className="text-2xl text-purple-400" /> ETHIndia</span>, title: "ETHIndia" },
+  { node: <span className="flex items-center gap-2 text-white/80 font-semibold text-sm"><SiPolygon className="text-2xl text-violet-400" /> Polygon</span>, title: "Polygon" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">☕ Tim Hortons</span>, title: "Tim Hortons" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🔷 BlockseBlock</span>, title: "BlockseBlock" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🌐 ICP India</span>, title: "ICP India" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🔄 SwapSpace</span>, title: "SwapSpace" },
 ];
 
-function initials(name: string) {
-  const words = name
-    .replace(/[^a-zA-Z0-9\s]/g, "")
-    .split(" ")
-    .filter(Boolean);
+const additionalSponsors: LogoItem[] = [
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🎁 Archies</span>, title: "Archies" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🍱 Tiffin Wala</span>, title: "Tiffin Wala" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🍽️ Megh&apos;s</span>, title: "Megh's" },
+];
 
-  if (!words.length) return "SP";
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+const communityPartners: LogoItem[] = [
+  { node: <span className="flex items-center gap-2 text-white/80 font-semibold text-sm"><SiGithub className="text-xl" /> Web3 India</span>, title: "Web3 India" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🌿 The Crypto Vines</span>, title: "The Crypto Vines" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">🔒 CYNDIA</span>, title: "CYNDIA" },
+  { node: <span className="flex items-center gap-2 text-white/80 font-semibold text-sm"><SiDiscord className="text-xl text-indigo-400" /> Noida B-Sides</span>, title: "Noida B-Sides" },
+  { node: <span className="flex items-center gap-1.5 text-white/80 font-semibold text-sm">⚡ SIZ</span>, title: "SIZ" },
+];
 
-  return (words[0][0] + words[1][0]).toUpperCase();
-}
+const allLogos: LogoItem[] = [...mainSponsors, ...additionalSponsors, ...communityPartners];
+
+const allSponsorCount = mainSponsors.length + additionalSponsors.length + communityPartners.length;
 
 export default function SponsorsShowcase() {
-  const [brokenLogos, setBrokenLogos] = useState<Record<string, boolean>>({});
-
-  const allSponsorCount = useMemo(
-    () => sponsorGroups.reduce((count, group) => count + group.sponsors.length, 0),
-    []
-  );
-
   return (
     <section className="relative z-10 mx-auto w-full max-w-7xl overflow-hidden px-4 py-12 md:px-8 md:py-16">
       <div className="absolute inset-0 z-0 hidden opacity-60 sm:block">
@@ -89,7 +59,8 @@ export default function SponsorsShowcase() {
 
       <div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-black/35 via-transparent to-black/60" />
 
-      <div className="relative mb-8 md:mb-12 flex flex-col items-center text-center">
+      {/* ── Header ───────────────────────────────────────────────────── */}
+      <div className="relative mb-10 md:mb-14 flex flex-col items-center text-center">
         <span className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.3em] text-white/60">
           Ecosystem Partners
         </span>
@@ -110,58 +81,66 @@ export default function SponsorsShowcase() {
         </p>
       </div>
 
-      <div className="relative space-y-10">
-        {sponsorGroups.map((group, groupIndex) => (
-          <div key={group.title} className="space-y-4">
-            <h3 className="text-xs font-mono uppercase tracking-[0.22em] text-zinc-500">
-              {group.title}
-            </h3>
+      {/* ── LogoLoop rows ────────────────────────────────────────────── */}
+      <div className="relative space-y-6">
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {group.sponsors.map((sponsor, sponsorIndex) => {
-                const key = `${group.title}-${sponsor.name}`;
-                const broken = brokenLogos[key];
-
-                return (
-                  <motion.article
-                    key={key}
-                    initial={{ opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.35, delay: (groupIndex * 0.04) + (sponsorIndex * 0.03) }}
-                    className="group flex min-h-44 flex-col items-center justify-center rounded-2xl border border-white/10 bg-zinc-950/80 px-5 py-6 text-center shadow-[0_10px_28px_rgba(0,0,0,0.35)]"
-                  >
-                    <div className="mb-4 flex h-16 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/40 p-3">
-                      {!broken ? (
-                        <Image
-                          src={sponsor.logoUrl}
-                          alt={`${sponsor.name} logo`}
-                          width={240}
-                          height={80}
-                          className="max-h-full max-w-full object-contain"
-                          onError={() =>
-                            setBrokenLogos((prev) => ({
-                              ...prev,
-                              [key]: true,
-                            }))
-                          }
-                        />
-                      ) : (
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-sm font-bold tracking-wide text-white/90">
-                          {initials(sponsor.name)}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-base font-bold tracking-tight text-white md:text-lg">
-                      {sponsor.name}
-                    </p>
-                  </motion.article>
-                );
-              })}
-            </div>
+        {/* Row 1 — Main Sponsors · right → left */}
+        <div>
+          <p className="mb-3 text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-600">Main Sponsors</p>
+          <div style={{ height: '76px', position: 'relative', overflow: 'hidden' }}>
+            <LogoLoop
+              logos={mainSponsors}
+              speed={100}
+              direction="left"
+              logoHeight={60}
+              gap={60}
+              hoverSpeed={30}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#000000"
+              ariaLabel="Main sponsors"
+            />
           </div>
-        ))}
+        </div>
+
+        {/* Row 2 — Community Partners · left → right */}
+        <div>
+          <p className="mb-3 text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-600">Community Partners</p>
+          <div style={{ height: '76px', position: 'relative', overflow: 'hidden' }}>
+            <LogoLoop
+              logos={communityPartners}
+              speed={100}
+              direction="right"
+              logoHeight={60}
+              gap={60}
+              hoverSpeed={30}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#000000"
+              ariaLabel="Community partners"
+            />
+          </div>
+        </div>
+
+        {/* Row 3 — All Partners · right → left */}
+        <div>
+          <p className="mb-3 text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-600">All Partners</p>
+          <div style={{ height: '76px', position: 'relative', overflow: 'hidden' }}>
+            <LogoLoop
+              logos={allLogos}
+              speed={120}
+              direction="left"
+              logoHeight={60}
+              gap={60}
+              hoverSpeed={30}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#000000"
+              ariaLabel="All sponsors and partners"
+            />
+          </div>
+        </div>
+
       </div>
     </section>
   );
