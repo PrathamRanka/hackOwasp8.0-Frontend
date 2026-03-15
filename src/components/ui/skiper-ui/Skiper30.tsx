@@ -7,9 +7,9 @@ import Image from "next/image";
 
 const prizesData = [
   { prize: "1st Prize", amount: "₹50,000", src: "/awards.jpg" },
-  { prize: "2nd Prize", amount: "₹30,000", src: "/awards.avif" },
+  { prize: "2nd Prize", amount: "₹30,000", src: "/awards.jpg" },
   { prize: "3rd Prize", amount: "₹20,000", src: "/awards.jpg" },
-  { prize: "Best First Year", amount: "₹10,000", src: "/awards.avif" },
+  { prize: "Best First Year", amount: "₹10,000", src: "/awards.jpg" },
   { prize: "Best Girls Team", amount: "₹10,000", src: "/awards.jpg" },
 ];
 

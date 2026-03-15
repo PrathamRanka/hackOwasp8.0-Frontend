@@ -32,7 +32,7 @@ export default function HoverRibbonsSection({
       >
         <Ribbons
           eventTargetRef={sectionRef}
-          baseThickness={8}
+          baseThickness={4}
           colors={["#5227FF", "#06fcdb", "#bc7cc1"]}
           speedMultiplier={0.5}
           maxAge={500}
